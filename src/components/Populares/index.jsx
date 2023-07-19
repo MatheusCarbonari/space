@@ -2,7 +2,7 @@ import CardsPopulares from './FotosPopulares'
 import FotosPopulares from './fotos-populares.json'
 import styles from './Populares.module.scss'
 import Botao from 'components/botao'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Populares(){
 
@@ -15,6 +15,16 @@ export default function Populares(){
             )
         )
     }
+
+    useEffect(() => {
+        if(retorno){
+            const timeout = setTimeout(() => {
+                setRetorno('')
+            }, 3000)
+
+            return () => clearTimeout(timeout)
+        }
+    }, [retorno])
 
     return (
         <aside className={styles.populares}>
