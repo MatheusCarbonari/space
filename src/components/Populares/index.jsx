@@ -1,8 +1,21 @@
 import CardsPopulares from './FotosPopulares'
 import FotosPopulares from './fotos-populares.json'
 import styles from './Populares.module.scss'
+import Botao from 'components/botao'
+import { useState } from 'react'
 
 export default function Populares(){
+
+    const [retorno, setRetorno] = useState('')
+
+    const resposta = () =>{
+        return (
+            setRetorno(
+                <p className={styles.erro}>Infelizmente não possuimos mais fotos</p>
+            )
+        )
+    }
+
     return (
         <aside className={styles.populares}>
             <h2>Populares</h2>
@@ -11,7 +24,8 @@ export default function Populares(){
                     return <CardsPopulares key={imagens.id} fotos={imagens}/>
                 })}
             </ul>
-            <button>Ver mais fotos</button>
+            <Botao styles={styles} resposta={resposta}/>
+            <div>{retorno}</div>
         </aside>
     )
 }
